@@ -1,17 +1,17 @@
 import express, { Request, Response } from "express";
-import { Technology } from "../models/TechInterface";
-import { User } from "../models/UserInterface";
-import { checkExistsUserAccount } from "../middleware/CheckExistsUserAccount ";
-import techController from "../controller/TechController";
+import { Tecnology } from "../models/Tecnology";
+import { User } from "../models/User"
+import { checkExistsUserAccount } from "../middleware/checkExistsUserAccount";
+import techController from "../controller/TecnologyController";
 
 
 const controllerTech = new techController()
 
 const router = express.Router()
 
-router.get('/technologies', checkExistsUserAccount, (req, res)=>controllerTech.getAllTech(req, res))
-router.post('/technologies', checkExistsUserAccount, (req, res)=>controllerTech.addTech(req, res))
-router.patch('/technologies/:id/studied', checkExistsUserAccount, (req, res)=>controllerTech.studiedTech(req, res))
-router.delete('/technologies/:id', checkExistsUserAccount, (req, res)=>controllerTech.deleteTech(req, res))
+router.get('/technologies', checkExistsUserAccount, (req, res)=>controllerTech.getTecnologies(req, res))
+router.post('/technologies', checkExistsUserAccount, (req, res)=>controllerTech.createTecnology(req, res))
+router.patch('/technologies/:id/studied', checkExistsUserAccount, (req, res)=>controllerTech.patchTecnology(req, res))
+router.delete('/technologies/:id', checkExistsUserAccount, (req, res)=>controllerTech.deleteTecnology(req, res))
 
 export default router
